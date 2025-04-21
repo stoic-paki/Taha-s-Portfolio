@@ -8,7 +8,7 @@ import ExperienceSection from './sections/ExperienceSection'
 import TechStack from './sections/TechStack'
 import Testimonials from './sections/Testimonials'
 import Contact from './sections/Contact'
-import Footer from './sections/footer'
+// import Footer from './sections/footer'
 function App() {
   return (
     <div>
@@ -21,7 +21,7 @@ function App() {
       <TechStack/>
       <Testimonials/>
       <Contact/>
-      <Footer/>
+      {/* <Footer/> */}
     </div>
   )
 }
