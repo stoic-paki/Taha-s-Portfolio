@@ -2,10 +2,10 @@ import React from "react";
 import Titleheader from "./../components/TitleHeader";
 import { useState, useRef } from "react";
 import ContactExperience from "../components/ContactExperience";
-import emailjs from '@emailjs/browser'
+import emailjs from "@emailjs/browser";
+import { useMediaQuery } from "react-responsive";
 
 const Contact = () => {
-
   const formRef = useRef(null);
 
   const [formData, setFormData] = useState({
@@ -14,7 +14,7 @@ const Contact = () => {
     message: "",
   });
 
-  const [loading, setLoading] = useState(false)
+  const [loading, setLoading] = useState(false);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -27,21 +27,23 @@ const Contact = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     setLoading(true);
-    try{
+    try {
       await emailjs.sendForm(
-        import.meta.env.VITE_APP_EMAILJS_SERVICE_ID, 
+        import.meta.env.VITE_APP_EMAILJS_SERVICE_ID,
         import.meta.env.VITE_APP_EMAILJS_TEMPLATE_ID,
         formRef.current,
-        import.meta.env.VITE_APP_EMAILJS_PUBLIC_KEY,
-      )
+        import.meta.env.VITE_APP_EMAILJS_PUBLIC_KEY
+      );
       setFormData({ name: "", email: "", message: "" });
-    } catch(error){
-      console.log("emailjs error" + error) 
-    } finally{
-      setLoading(false)
+    } catch (error) {
+      console.log("emailjs error" + error);
+    } finally {
+      setLoading(false);
     }
-
   };
+
+  // const isTablet = useMediaQuery({query: '(max-width: 1024px)'});
+  const isMobile = useMediaQuery({ query: "(max-width: 768px)" });
 
   return (
     <section className="flex-center section-padding" id="contact">
@@ -99,7 +101,9 @@ const Contact = () => {
                   {" "}
                   <div className="cta-button group">
                     <div className="bg-circle" />
-                    <p className="text">{loading ? "sending ...":'sent message'}</p>
+                    <p className="text">
+                      {loading ? "sending ..." : "sent message"}
+                    </p>
                     <div className="arrow-wrapper">
                       <img
                         src="/assets/public/images/arrow-down.svg"
@@ -113,11 +117,20 @@ const Contact = () => {
           </div>
 
           {/* right side  */}
-          <div className="xl:col-span-7 min-h-96">
-            <div className="w-full h-full bg-[#cd7c2e] hover:cursor-grab rounded-3xl overflow-hidden">
-            <ContactExperience/>
+          {isMobile ? (
+            <h1 className="text-center"> Feel free to contact us</h1>
+          ) : (
+            <div className="xl:col-span-7 min-h-96">
+              <div className="w-full h-full bg-[#cd7c2e] hover:cursor-grab rounded-3xl overflow-hidden">
+                <ContactExperience />
+              </div>
             </div>
-          </div>
+          )}
+          {/* <div className="xl:col-span-7 min-h-96">
+            <div className="w-full h-full bg-[#cd7c2e] hover:cursor-grab rounded-3xl overflow-hidden">
+              <ContactExperience />
+            </div>
+          </div> */}
         </div>
       </div>
     </section>
