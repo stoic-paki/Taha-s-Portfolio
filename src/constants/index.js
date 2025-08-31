@@ -247,23 +247,13 @@ const navLinks = [
   
   const socialImgs = [
     {
-      name: "insta",
-      url:"#",
-      imgPath: "/assets/public/images/insta.png",
-    },
-    {
-      name: "fb",
-      url:"#",
-      imgPath: "/assets/public/images/fb.png",
-    },
-    {
-      name: "x",
-      url:"#",
-      imgPath: "/assets/public/images/x.png",
+      name: "Github",
+      url:"https://github.com/dashboard",
+      imgPath: "/assets/public/images/github-seeklogo.svg",
     },
     {
       name: "linkedin",
-      url:"#",
+      url:"https://www.linkedin.com/in/taha-shahzad-b79a82373/",
       imgPath: "/assets/public/images/linkedin.png",
     },
   ];
